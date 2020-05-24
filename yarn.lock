@@ -982,10 +982,9 @@
     webpack-cli "2.0.12"
     worker-loader "^1.1.1"
 
-"@theia/application-package@1.2.0-next.82cc44c5":
-  version "1.2.0-next.82cc44c5"
-  resolved "https://registry.yarnpkg.com/@theia/application-package/-/application-package-1.2.0-next.82cc44c5.tgz#9809962228a93fe3b786f6de2f4ddfde85c23456"
-  integrity sha512-ewVEzXAaNyv42QLt+H9E3RYLupW4FhGop3OtDSIJ3JEVfotv60WTM/uZvibIuXoQEe53em3MokU4CNwnU3ZmLQ==
+"@theia/application-package@./theia-application-package-custom.tgz", "@theia/application-package@1.2.0-next.82cc44c5":
+  version "1.1.0"
+  resolved "./theia-application-package-custom.tgz#009d015b6a1074dc52c8e42d449692d37b58f86b"
   dependencies:
     "@types/fs-extra" "^4.0.2"
     "@types/request" "^2.0.3"
