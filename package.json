@@ -26,7 +26,7 @@
   },
   "devDependencies": {
     "@theia/cli": "next",
-    "pkg": "^4.4.8",
+    "pkg": "https://github.com/geekuillaume/pkg.git",
     "tauri": "^0.6.2"
   },
   "scripts": {

@@ -9888,10 +9888,9 @@ pkg-up@^2.0.0:
   dependencies:
     find-up "^2.1.0"
 
-pkg@^4.4.8:
+"pkg@https://github.com/geekuillaume/pkg.git":
   version "4.4.8"
-  resolved "https://registry.yarnpkg.com/pkg/-/pkg-4.4.8.tgz#145fb81f31eebfb90d2010dd2c4b663ca0db4009"
-  integrity sha512-Fqqv0iaX48U3CFZxd6Dq6JKe7BrAWbgRAqMJkz/m8W3H5cqJ6suvsUWe5AJPRlN/AhbBYXBJ0XG9QlYPTXcVFA==
+  resolved "https://github.com/geekuillaume/pkg.git#54644ba324cfd860476dae2304f9a678a9a2f7ec"
   dependencies:
     "@babel/parser" "^7.9.4"
     "@babel/runtime" "^7.9.2"
