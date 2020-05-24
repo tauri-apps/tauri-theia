@@ -1,0 +1,16 @@
+# Tauri Theia
+
+[Theia IDE](https://theia-ide.org/) packaged as a Tauri application.
+
+## To Use
+
+1. Clone this repository and open a terminal in the root of it. Make sure to use Node v10.x
+2. Install deps with `yarn`
+3. Package Theia server as an executable with `yarn theia:package`
+4. Run `yarn tauri build` to build the executable (read note below)
+
+**NOTE:** Building the app will fail the first time. To fix this, you will need to rename the binary in `src-tauri/theia-binaries/theia` to the path in the error message from `yarn tauri build`.
+
+## Known Problems
+
+- The Theia backend server is not killed when closing the Tauri window. You will have to search for `theia` in your system monitor and kill any processes listed
