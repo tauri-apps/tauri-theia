@@ -9,6 +9,7 @@ use std::{
 };
 use tauri::Handle;
 mod cmd;
+mod command;
 
 fn main() {
   tauri::AppBuilder::new()
@@ -26,9 +27,9 @@ fn main() {
 // Takes the name of the binary and returns the full path to its location
 fn get_bin_command(name: &str) -> String {
   tauri::api::command::relative_command(
-    tauri::api::command::binary_command(name.to_string()).unwrap(),
+    tauri::api::command::binary_command(name.to_string()).expect("failed to get binary command"),
   )
-  .unwrap()
+  .expect("failed to get relative command")
 }
 
 // Spawns Theia server and loads url in webview
@@ -38,13 +39,18 @@ fn spawn_theia_server<T: 'static>(handle: &Handle<T>) {
   let orchestrator_binary = get_bin_command("theia-orchestrator");
 
   // Get stdout from binary
-  let stdout = Command::new(orchestrator_binary)
-    .args(vec!["run", theia_binary.as_str()])
-    .stdout(Stdio::piped())
-    .spawn()
-    .expect("Failed to start theia server")
+  // let stdout = Command::new(orchestrator_binary)
+  //   .args(vec!["run", theia_binary.as_str()])
+  //   .stdout(Stdio::piped())
+  //   .spawn()
+  //   .expect("Failed to start theia server")
+  //   .stdout
+  //   .expect("Failed to get theia server stdout");
+
+  let stdout = command::spawn_command(orchestrator_binary, vec!["run", theia_binary.as_str()])
+    .expect("Failed to start the orchestrator")
     .stdout
-    .expect("Failed to get theia server stdout");
+    .expect("Failed to get stdout");
 
   // Read stdout
   let reader = BufReader::new(stdout);
