@@ -39,14 +39,6 @@ fn spawn_theia_server<T: 'static>(handle: &Handle<T>) {
   let orchestrator_binary = get_bin_command("theia-orchestrator");
 
   // Get stdout from binary
-  // let stdout = Command::new(orchestrator_binary)
-  //   .args(vec!["run", theia_binary.as_str()])
-  //   .stdout(Stdio::piped())
-  //   .spawn()
-  //   .expect("Failed to start theia server")
-  //   .stdout
-  //   .expect("Failed to get theia server stdout");
-
   let stdout = command::spawn_command(orchestrator_binary, vec!["run", theia_binary.as_str()])
     .expect("Failed to start the orchestrator")
     .stdout
