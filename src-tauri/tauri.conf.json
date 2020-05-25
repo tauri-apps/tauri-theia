@@ -22,7 +22,7 @@
         "icons/icon.ico"
       ],
       "resources": [],
-      "externalBin": ["theia-binaries/theia"],
+      "externalBin": ["theia-binaries/theia", "theia-orchestrators/theia-orchestrator"],
       "copyright": "",
       "category": "DeveloperTool",
       "shortDescription": "",
