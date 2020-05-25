@@ -34,7 +34,9 @@
     "theia:clean": "theia clean",
     "theia:build": "theia build",
     "theia:download:plugins": "theia download:plugins",
-    "theia:package": "pkg package.json -t node10 --output src-tauri/theia-binaries/theia"
+    "theia:package:linux": "pkg package.json -t node10 --output src-tauri/theia-binaries/theia-x86_64-unknown-linux-gnu",
+    "theia:package:windows": "pkg package.json -t node10 --output src-tauri/theia-binaries/theia-x86_64-pc-windows-msvc.exe",
+    "theia:package:osx": "pkg package.json -t node10 --output src-tauri/theia-binaries/theia-x86_64-apple-darwin"
   },
   "theiaPluginsDir": "plugins",
   "theiaPlugins": {
