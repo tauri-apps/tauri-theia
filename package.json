@@ -4,8 +4,7 @@
   "bin": "src-gen/backend/main.js",
   "pkg": {
     "assets": [
-      "lib/**/*",
-      "plugins/**/*"
+      "lib/**/*"
     ]
   },
   "dependencies": {
