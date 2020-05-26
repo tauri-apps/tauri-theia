@@ -24,7 +24,7 @@ if ($mode -eq "run") {
     # Iterate through the process list. 
     foreach ($proc in $procs) {
         # shutdown each process. 
-        Shutdown_Proc($name)
+        Shutdown_Proc($proc)
     }
     
     # Make sure that the main process has exited
