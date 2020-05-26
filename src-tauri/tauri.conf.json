@@ -42,7 +42,7 @@
       "all": true
     },
     "window": {
-      "title": "Tauri App",
+      "title": "Theia IDE",
       "width": 800,
       "height": 600,
       "resizable": true,
