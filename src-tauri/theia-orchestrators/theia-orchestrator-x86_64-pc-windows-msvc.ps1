@@ -1,8 +1,7 @@
 #!/usr/bin/env pwsh
 
 # Cature Arguments
-$mode = $args[0]
-$path = $args[1]
+param($mode, $path)
 
 # Names of the associated processes
 $wwa_host = "WWAHost"
