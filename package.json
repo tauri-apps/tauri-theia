@@ -48,6 +48,7 @@
     "vscode-builtin-typescript-language-features": "https://github.com/theia-ide/vscode-builtin-extensions/releases/download/v1.39.1-prel/typescript-language-features-1.39.1-prel.vsix"
   },
   "resolutions": {
-    "@theia/application-package": "./theia-application-package-custom.tgz"
+    "@theia/application-package": "./theia-application-package-custom.tgz",
+    "vscode-ripgrep": "./vscode-ripgrep-custom.tgz"
   }
 }

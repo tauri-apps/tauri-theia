@@ -40,6 +40,7 @@ fn spawn_theia_server<T: 'static>(handle: &Handle<T>) {
   // Get stdout from binary
   let stdout = Command::new(orchestrator_binary)
     .args(vec!["run", theia_binary.as_str()])
+    .env("VSCODE_RIPGREP_PATH", get_bin_command("rg"))
     .stdout(Stdio::piped())
     .spawn()
     .expect("Failed to start theia server")
