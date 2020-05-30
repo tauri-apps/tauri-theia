@@ -4,8 +4,7 @@
   "bin": "src-gen/backend/main.js",
   "pkg": {
     "assets": [
-      "lib/**/*",
-      "plugins/**/*"
+      "lib/**/*"
     ]
   },
   "dependencies": {
@@ -26,6 +25,7 @@
   },
   "devDependencies": {
     "@theia/cli": "next",
+    "execa": "^4.0.2",
     "pkg": "https://github.com/geekuillaume/pkg.git",
     "tauri": "^0.6.2"
   },
@@ -34,7 +34,7 @@
     "theia:clean": "theia clean",
     "theia:build": "theia build",
     "theia:download:plugins": "theia download:plugins",
-    "theia:package": "pkg package.json -t node10 --output src-tauri/theia-binaries/theia"
+    "theia:package": "pkg package.json -t node10 --output src-tauri/theia-binaries/theia && node ./move-binaries.js"
   },
   "theiaPluginsDir": "plugins",
   "theiaPlugins": {
@@ -47,5 +47,9 @@
     "vscode-builtin-scss": "https://github.com/theia-ide/vscode-builtin-extensions/releases/download/v1.39.1-prel/scss-1.39.1-prel.vsix",
     "vscode-builtin-typescript": "https://github.com/theia-ide/vscode-builtin-extensions/releases/download/v1.39.1-prel/typescript-1.39.1-prel.vsix",
     "vscode-builtin-typescript-language-features": "https://github.com/theia-ide/vscode-builtin-extensions/releases/download/v1.39.1-prel/typescript-language-features-1.39.1-prel.vsix"
+  },
+  "resolutions": {
+    "@theia/application-package": "./theia-application-package-custom.tgz",
+    "vscode-ripgrep": "./vscode-ripgrep-custom.tgz"
   }
 }

@@ -9,39 +9,59 @@ use std::{
 };
 use tauri::Handle;
 mod cmd;
+mod command;
 
 fn main() {
   tauri::AppBuilder::new()
     .setup(|_webview, _| {
+      // Spawn Theia server in new thread
       let handle_clone = _webview.handle().clone();
       std::thread::spawn(move || {
         spawn_theia_server(&handle_clone);
       });
-      // .join().unwrap();
     })
     .build()
     .run();
 }
 
+// Takes the name of the binary and returns the full path to its location
+fn get_bin_command(name: &str) -> String {
+  tauri::api::command::relative_command(
+    tauri::api::command::binary_command(name.to_string()).expect("failed to get binary command"),
+  )
+  .expect("failed to get relative command")
+}
+
+// Spawns Theia server and loads url in webview
 fn spawn_theia_server<T: 'static>(handle: &Handle<T>) {
-  let binary_name = tauri::api::command::binary_command("theia".to_string()).unwrap();
-  let binary_path = tauri::api::command::relative_command(binary_name).unwrap();
-  let stdout = Command::new(binary_path)
-    // It doesn't source plugins from inside the pkg binary for some reason, so this doesn't work
-    // .args(&["--plugins=local-dir:plugins"])
-    .stdout(Stdio::piped())
-    .spawn()
-    .expect("Failed to start theia server")
-    .stdout
-    .expect("Failed to get theia server stdout");
+  // Get paths to orchestrator and main binary
+  let theia_binary = get_bin_command("theia");
+  let orchestrator_binary = get_bin_command("theia-orchestrator");
+
+  // Get stdout from binary
+  let stdout = command::spawn_command(
+    orchestrator_binary,
+    vec!["run", theia_binary.as_str()],
+    vec![("VSCODE_RIPGREP_PATH", get_bin_command("rg").as_str())],
+  )
+  .expect("Failed to start the orchestrator")
+  .stdout
+  .expect("Failed to get stdout");
+
+  // Read stdout
   let reader = BufReader::new(stdout);
   let mut webview_started = false;
   reader
     .lines()
     .filter_map(|line| line.ok())
+    // Check if binary has printed the url to the console
     .for_each(|line| {
       if line.starts_with("root INFO Theia app listening on ") {
-        let url = line.chars().skip(33).collect::<String>().replace(".", "");
+        // Extract url from stdout line
+        let url = line
+          .replace("root INFO Theia app listening on ", "")
+          .replace(".", "");
+        // If the webview hasn't started yet, load the url of the server
         if !webview_started {
           webview_started = true;
           handle
