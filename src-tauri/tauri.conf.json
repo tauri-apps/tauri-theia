@@ -22,7 +22,11 @@
         "icons/icon.ico"
       ],
       "resources": [],
-      "externalBin": ["theia-binaries/theia", "theia-orchestrators/theia-orchestrator"],
+      "externalBin": [
+        "theia-binaries/theia",
+        "theia-binaries/rg",
+        "theia-orchestrators/theia-orchestrator"
+      ],
       "copyright": "",
       "category": "DeveloperTool",
       "shortDescription": "",
@@ -42,7 +46,7 @@
       "all": true
     },
     "window": {
-      "title": "Tauri App",
+      "title": "Theia IDE",
       "width": 800,
       "height": 600,
       "resizable": true,

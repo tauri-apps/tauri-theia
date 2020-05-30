@@ -39,10 +39,14 @@ fn spawn_theia_server<T: 'static>(handle: &Handle<T>) {
   let orchestrator_binary = get_bin_command("theia-orchestrator");
 
   // Get stdout from binary
-  let stdout = command::spawn_command(orchestrator_binary, vec!["run", theia_binary.as_str()])
-    .expect("Failed to start the orchestrator")
-    .stdout
-    .expect("Failed to get stdout");
+  let stdout = command::spawn_command(
+    orchestrator_binary,
+    vec!["run", theia_binary.as_str()],
+    vec![("VSCODE_RIPGREP_PATH", get_bin_command("rg").as_str())],
+  )
+  .expect("Failed to start the orchestrator")
+  .stdout
+  .expect("Failed to get stdout");
 
   // Read stdout
   let reader = BufReader::new(stdout);
