@@ -1,11 +1,11 @@
 [package]
-name = "app"
+name = "theia"
 version = "0.1.0"
-description = "A Tauri App"
+description = "Tauri Flavor of the Theia IDE"
 authors = [ "you" ]
 license = ""
 repository = ""
-default-run = "app"
+default-run = "theia"
 edition = "2018"
 build = "src/build.rs"
 
@@ -22,5 +22,12 @@ embedded-server = [ "tauri/embedded-server" ]
 no-server = [ "tauri/no-server" ]
 
 [[bin]]
-name = "app"
+name = "theia"
 path = "src/main.rs"
+
+[profile.release]
+panic = "abort"
+codegen-units = 1
+lto = true
+incremental = false
+opt-level = "z"

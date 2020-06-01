@@ -4,28 +4,28 @@
   "bin": "src-gen/backend/main.js",
   "pkg": {
     "assets": [
-      "lib/**/*",
-      "plugins/**/*"
+      "lib/**/*"
     ]
   },
   "dependencies": {
-    "@theia/callhierarchy": "next",
-    "@theia/file-search": "next",
-    "@theia/git": "next",
-    "@theia/json": "next",
-    "@theia/markers": "next",
-    "@theia/messages": "next",
-    "@theia/mini-browser": "next",
-    "@theia/navigator": "next",
-    "@theia/outline-view": "next",
-    "@theia/plugin-ext-vscode": "next",
-    "@theia/preferences": "next",
-    "@theia/preview": "next",
-    "@theia/search-in-workspace": "next",
-    "@theia/terminal": "next"
+    "@theia/callhierarchy": "^1.3.0-next.2aa2fa1a",
+    "@theia/file-search": "^1.3.0-next.2aa2fa1a",
+    "@theia/git": "^1.3.0-next.2aa2fa1a",
+    "@theia/json": "^1.3.0-next.2aa2fa1a",
+    "@theia/markers": "^1.3.0-next.2aa2fa1a",
+    "@theia/messages": "^1.3.0-next.2aa2fa1a",
+    "@theia/mini-browser": "^1.3.0-next.2aa2fa1a",
+    "@theia/navigator": "^1.3.0-next.2aa2fa1a",
+    "@theia/outline-view": "^1.3.0-next.2aa2fa1a",
+    "@theia/plugin-ext-vscode": "^1.3.0-next.2aa2fa1a",
+    "@theia/preferences": "^1.3.0-next.2aa2fa1a",
+    "@theia/preview": "^1.3.0-next.2aa2fa1a",
+    "@theia/search-in-workspace": "^1.3.0-next.2aa2fa1a",
+    "@theia/terminal": "^1.3.0-next.2aa2fa1a"
   },
   "devDependencies": {
-    "@theia/cli": "next",
+    "@theia/cli": "^1.3.0-next.2aa2fa1a",
+    "execa": "^4.0.2",
     "pkg": "https://github.com/geekuillaume/pkg.git",
     "tauri": "^0.6.2"
   },
@@ -34,7 +34,7 @@
     "theia:clean": "theia clean",
     "theia:build": "theia build",
     "theia:download:plugins": "theia download:plugins",
-    "theia:package": "pkg package.json -t node10 --output src-tauri/theia-binaries/theia"
+    "theia:package": "pkg package.json -t node10 --output src-tauri/theia-binaries/theia && node ./move-binaries.js"
   },
   "theiaPluginsDir": "plugins",
   "theiaPlugins": {
@@ -47,5 +47,9 @@
     "vscode-builtin-scss": "https://github.com/theia-ide/vscode-builtin-extensions/releases/download/v1.39.1-prel/scss-1.39.1-prel.vsix",
     "vscode-builtin-typescript": "https://github.com/theia-ide/vscode-builtin-extensions/releases/download/v1.39.1-prel/typescript-1.39.1-prel.vsix",
     "vscode-builtin-typescript-language-features": "https://github.com/theia-ide/vscode-builtin-extensions/releases/download/v1.39.1-prel/typescript-language-features-1.39.1-prel.vsix"
+  },
+  "resolutions": {
+    "@theia/application-package": "./theia-application-package-custom.tgz",
+    "vscode-ripgrep": "./vscode-ripgrep-custom.tgz"
   }
 }
