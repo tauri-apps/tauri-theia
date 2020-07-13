@@ -1,0 +1,25 @@
+From d7a06e58b483e22bae7a42277fbe4407bbf1b498 Mon Sep 17 00:00:00 2001
+From: Oded Arbel <oded@geek.co.il>
+Date: Mon, 13 Jul 2020 16:38:57 +0300
+Subject: [PATCH] Use 'extract' to run appimagetool without FUSE
+
+When running with no FUSE support available - for example, in a container - use `--appimage-extract` to run the AppImage tool.
+---
+ cli/tauri-bundler/src/bundle/templates/appimage | 7 ++++++-
+ 1 file changed, 6 insertions(+), 1 deletion(-)
+
+diff --git a/cli/tauri-bundler/src/bundle/templates/appimage b/cli/tauri-bundler/src/bundle/templates/appimage
+index 55076561..670ea102 100644
+--- a/cli/tauri-bundler/src/bundle/templates/appimage
++++ b/cli/tauri-bundler/src/bundle/templates/appimage
+@@ -33,4 +33,9 @@ mksquashfs {{app_name}}.AppDir {{app_name}}.squashfs -root-owned -noappend
+ 
+ wget -q -O appimagetool https://github.com/AppImage/AppImageKit/releases/download/continuous/appimagetool-x86_64.AppImage || wget -q -O appimagetool https://github.com/AppImage/AppImageKit/releases/download/12/appimagetool-x86_64.AppImage
+ chmod +x appimagetool
+-./appimagetool {{app_name}}.AppDir {{app_name}}.AppImage
++if lsmod | grep -q fuse; then
++  ./appimagetool {{app_name}}.AppDir {{app_name}}.AppImage
++else
++  ./appimagetool --appimage-extract
++  ./squashfs-root/AppRun {{app_name}}.AppDir {{app_name}}.AppImage
++fi

@@ -6,7 +6,8 @@ jobs:
     name: Build
     runs-on: ubuntu-latest
     steps:
-      - name: Docker build
-        uses: uses: docker/build-push-action@v1
+      - uses: actions/checkout@v2
+      - uses: docker/build-push-action@v1
         with:
           push: false
+          build_args: BRANCH=$GITHUB_REF
