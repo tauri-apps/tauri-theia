@@ -1,0 +1,12 @@
+name: Test Theia build
+on: [push]
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Docker build
+        uses: uses: docker/build-push-action@v1
+        with:
+          push: false
