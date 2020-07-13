@@ -1,4 +1,4 @@
-name: Test Theia build
+name: Test Theia build with Docker
 on: [push]
 
 jobs:
