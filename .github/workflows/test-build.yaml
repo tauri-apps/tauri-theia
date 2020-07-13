@@ -10,4 +10,3 @@ jobs:
       - uses: docker/build-push-action@v1
         with:
           push: false
-          build_args: BRANCH=${{ github.ref }}
